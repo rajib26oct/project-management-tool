@@ -125,12 +125,12 @@ header .header-icon{
 
 .panel h4{font-size: 16px;}
 
-.panel .panel-left{ width: 20%; height: 500px; border-radius: 20px!important; box-sizing: border-box;}
+.panel .panel-left{ width: 20%; height:auto; min-height: 500px; border-radius: 20px!important; box-sizing: border-box;}
 .panel .panel-right{ width: 78%; height: auto;border-radius: 20px!important; box-sizing: border-box;position: relative;}
 .button-container{text-align: center;margin: 40px 0px 20px;border-top: 1px solid #ccc;padding-top: 30px;position: absolute;width: calc(100% - 30px); bottom: 0px;}
 .button-container button{border-radius: 56px;padding: 10px 40px;width: 140px;font-size: 12px;}
 
-.views{width: 50%; }
+.views{width: 50%;margin-bottom: 100px; }
 .views label{font-size: 12px;}
 .views .react-datepicker__tab-loop{z-index: 9;}
 textarea{resize: none;}

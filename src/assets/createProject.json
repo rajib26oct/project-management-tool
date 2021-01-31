@@ -1,0 +1,53 @@
+{
+    "stepper": [
+    {
+      "id": 1,
+      "label": "Project Demograpics",
+      "name":"projectDemographic",
+      "action": "active"
+    },
+    {
+      "id": 2,
+      "label": "Timeline",
+      "name": "timeline",
+      "action": ""
+    },
+    {
+      "id": 3,
+      "label": "Project Team",
+      "name": "projectTeam",
+      "action": ""
+    },
+    {
+      "id": 4,
+      "label": "Risk",
+      "name": "risk",
+      "action": ""
+    },
+    {
+      "id": 5,
+      "label": "Dependency",
+      "name": "dependency",
+      "action": ""
+    },
+    {
+      "id": 6,
+      "label": "Confirm/Create",
+      "name": "confirmation",
+      "action": ""
+    }
+
+  ],
+
+   "viewsDefaultValue":{
+		"projectDemographic": {
+			"projectName":"",
+			"projectDescription":"",
+			"projectMethodology":"agile"
+		},
+	    "timeline": {
+			"projectStartDate": "",
+			"projectDuration": ""
+		}
+   }
+}

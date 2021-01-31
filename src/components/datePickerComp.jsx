@@ -5,21 +5,28 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 
-const DatePickerComp = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const DatePickerComp = (props) => {
+  //console.log("DatePickerComp==="+props)
+  let date = (props.selectedDate != "") ? props.selectedDate : null;
+  
+  const [startDate, setStartDate] = useState(null);
 
   const CustomDateInput = ({ value, onClick }) => (
     <div className="date-picker-custom-input" onClick={onClick}>
-        <input type="text" className="form-control" value={value}/>
+        <input type="text" className="form-control" 
+          value={value} 
+          name={props.name}
+          onChange={props.onSelectDate}/>
         <i className="fa fa-calendar" aria-hidden="true"></i>
     </div>
   );
 
   return (
     <DatePicker 
-       selected={startDate} 
-       onChange={date => setStartDate(date)}
-       customInput={<CustomDateInput />} />
+       selected={date ? date:startDate } 
+       onChange={date => props.onSelectDate(date, props.name)}
+       customInput={<CustomDateInput />} 
+       placeholderText="Select a Date"/>
   );
 }
  

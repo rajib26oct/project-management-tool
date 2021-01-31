@@ -5,7 +5,8 @@ import Views from './views';
 class Stepper extends Component {
     state = {
         currentStep: 1,
-        data: this.props.stepperData
+        data: this.props.stepperData,
+        viewData: this.props.viewsValue
       }
 
     updateView = view => {
@@ -38,11 +39,15 @@ class Stepper extends Component {
        console.log(`${view}  ${currentStep}`);
     };
 
+    
+
     render() { 
         let disabled = false;
         disabled = this.state.currentStep === 1 ? true : false;
 
         let currentView = "view"+this.state.currentStep;
+
+        var viewName = this.state.data[this.state.currentStep-1].name;
         
         return (
             <div>
@@ -58,8 +63,8 @@ class Stepper extends Component {
                     }
                 </div>
                 
-                <Views view={currentView}/>
-                <div class="button-container">
+                <Views view={currentView} viewName={viewName} viewData={this.state.viewData}/>
+                <div className="button-container">
                     <button type="button" onClick={() => this.updateView('prev')} className="btn btn-dark btn-lg ml-2" disabled={disabled}>Not Sure</button>
                     <button type="button" onClick={() => this.updateView('next')}  className="btn btn-dark btn-lg ml-2" >Yes, I'm Sure</button>
                 </div>

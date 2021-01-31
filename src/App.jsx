@@ -1,51 +1,30 @@
+import React, { Component } from 'react';
+import http from './services/httpService';
 import Header from './components/header';
 import Stepper from './components/stepper';
 import './App.css';
 import SideNavBar from './components/sideNavBar';
 
+import createProjectData from './assets/createProject.json';
 
-function App() {
-  const stepperData = [
-    {
-      id: 1,
-      label: "Project Demograpics",
-      action: "active"
-    },
-    {
-      id: 2,
-      label: "Timeline",
-      action: ""
-    },
-    {
-      id: 3,
-      label: "Project Team",
-      action: ""
-    },
-    {
-      id: 4,
-      label: "Risk",
-      action: ""
-    },
-    {
-      id: 5,
-      label: "Dependency",
-      action: ""
-    },
-    {
-      id: 6,
-      label: "Confirm/Create",
-      action: ""
-    }
 
-  ];
+const apiEndPoint = "";
+
+class App extends Component {
+  state = {  };
   
+  async componentDidMount(){
+    //const {data: createProject} = await http.get(apiEndPoint);
+  }
 
-  return (
-    
-    <div className="App">
+  render() { 
+    const stepperData = createProjectData.stepper;
+    const viewsDefaultValue = createProjectData.viewsDefaultValue;
+    return ( 
+      <div className="App">
       
-       <Header></Header>
-       <div className="panel">
+        <Header></Header>
+        <div className="panel">
         
             <div className="panel-left shadow p-3 mb-5 bg-white rounded mr-4">
                 <div className="profile-container">
@@ -61,13 +40,14 @@ function App() {
             <div className="gap"></div>
             <div className="panel-right shadow p-3 mb-5 bg-white rounded">
                 <h4>Project Creation Workflow(max 20 steps)</h4> 
-                <Stepper key="1" totalSteps="6" stepperData={stepperData}/>
+                <Stepper key="1" totalSteps={stepperData.length} stepperData={stepperData} viewsValue={viewsDefaultValue}/>
             </div>
          
        </div>
       { /*<Stepper key="1" totalSteps="6" stepperData={stepperData}/>*/}
     </div>
-  );
+     );
+  }
 }
-
+ 
 export default App;

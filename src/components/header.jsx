@@ -6,10 +6,10 @@ class Header extends Component {
     render() { 
         return ( <header>
             <img src={logo} alt="One Degree Team"/>
-            <div class="header-icons">
-                <div class="header-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
-                <div class="header-icon"><i class="fa fa-bell-o" aria-hidden="true"></i></div>
-                <div class="header-icon"><i class="fa fa-user-o" aria-hidden="true"></i></div>
+            <div className="header-icons">
+                <div className="header-icon"><i className="fa fa-search" aria-hidden="true"></i></div>
+                <div className="header-icon"><i className="fa fa-bell-o" aria-hidden="true"></i></div>
+                <div className="header-icon"><i className="fa fa-user-o" aria-hidden="true"></i></div>
             </div>
         </header> );
     }
