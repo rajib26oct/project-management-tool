@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import http from './services/httpService';
 import Header from './components/header';
 import Stepper from './components/stepper';
 import './App.css';
 import SideNavBar from './components/sideNavBar';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import createProjectData from './assets/createProject.json';
 
-
-const apiEndPoint = "";
 
 class App extends Component {
   state = {  };
@@ -22,7 +21,7 @@ class App extends Component {
     const viewsDefaultValue = createProjectData.viewsDefaultValue;
     return ( 
       <div className="App">
-      
+        <ToastContainer/>
         <Header></Header>
         <div className="panel">
         

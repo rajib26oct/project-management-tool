@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import Views from './views';
+import http from '../services/httpService';
+import { v4 as uuidv4 } from 'uuid';
+import Cookies from 'js-cookie'
+import { toast } from "react-toastify";
 
+Cookies.set('token',  uuidv4())
+
+const apiEndPoint = "http://20.37.49.29:80/api/cp";
 
 class Stepper extends Component {
     state = {
@@ -39,6 +46,19 @@ class Stepper extends Component {
        console.log(`${view}  ${currentStep}`);
     };
 
+    onSubmitProjectInformation = async () => {
+        const csrfToken = Cookies.get('token');
+        const options = {
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        };
+        const requestPayLoad = {...this.state.viewData};
+        requestPayLoad.uuid = uuidv4();
+        const response = await http.post(apiEndPoint,requestPayLoad,options);
+        toast.success(response.message);
+    };
+
     
 
     render() { 
@@ -64,9 +84,12 @@ class Stepper extends Component {
                 </div>
                 
                 <Views view={currentView} viewName={viewName} viewData={this.state.viewData}/>
+
+                
                 <div className="button-container">
                     <button type="button" onClick={() => this.updateView('prev')} className="btn btn-dark btn-lg ml-2" disabled={disabled}>Not Sure</button>
                     <button type="button" onClick={() => this.updateView('next')}  className="btn btn-dark btn-lg ml-2" >Yes, I'm Sure</button>
+                    <button type="button" onClick={() => this.onSubmitProjectInformation()} className="btn btn-dark btn-lg ml-2">Submit Data</button>
                 </div>
             </div>
         );
