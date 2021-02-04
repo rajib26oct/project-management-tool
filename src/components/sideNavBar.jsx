@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class SideNavBar extends Component {
     state = {  }
@@ -6,25 +7,25 @@ class SideNavBar extends Component {
         return ( 
         <ul className="nav flex-column">
             <li className="nav-item">
-                <a className="nav-link" href="#">Dashboard</a>
+                <Link className="nav-link" to="/">Dashboard</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Calendar</a>
+                <Link className="nav-link" to="/calendar">Calendar</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link active" href="#">Create Project</a>
+                <Link className="nav-link active" to="/create-project">Create Project</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Tasks</a>
+                <Link className="nav-link" to="/tasks">Tasks</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Users Manager</a>
+                <Link className="nav-link" to="/user-manager">Users Manager</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Managers</a>
+                <Link className="nav-link" to="/managers">Managers</Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Payments</a>
+                <Link className="nav-link" to="/payments">Payments</Link>
             </li>
         </ul> 
       );

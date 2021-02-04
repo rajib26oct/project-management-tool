@@ -16,6 +16,11 @@ class Stepper extends Component {
         viewData: this.props.viewsValue
       }
 
+    componentDidMount(){
+       const index = this.state.data.findIndex(step => step.action ==="active");
+       this.setState({currentStep:index+1});
+    }
+
     updateView = view => {
         let currentStep = this.state.currentStep;
 
@@ -61,9 +66,13 @@ class Stepper extends Component {
 
     
 
-    render() { 
+    render() {
         let disabled = false;
+        const index = this.state.data.findIndex(step => step.action ==="active");
         disabled = this.state.currentStep === 1 ? true : false;
+
+        
+       // this.setState({currentStep:index});
 
         let currentView = "view"+this.state.currentStep;
 

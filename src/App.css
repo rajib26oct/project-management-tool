@@ -134,7 +134,7 @@ header .header-icon{
 .views label{font-size: 12px;}
 .views .react-datepicker__tab-loop{z-index: 9;}
 textarea{resize: none;}
-.App .form-control{border-radius: 6px;resize: none;}
+.App .form-control{border-radius: 6px;resize: none;height: auto;}
 
 .profile-container{height: 60px;border-bottom: 1px solid #ccc;}
 .logout-section{

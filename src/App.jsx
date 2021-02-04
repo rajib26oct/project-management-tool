@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect  } from "react-router-dom";
 import Header from './components/header';
-import Stepper from './components/stepper';
-import './App.css';
 import SideNavBar from './components/sideNavBar';
 import { ToastContainer } from "react-toastify";
+import Dashboard from "./components/views/dashboard";
+import CreateProject from './components/views/createProject';
+import NotFound from "./components/views/notFound";
+import CalendarView from './components/views/calendar';
+import Tasks from './components/views/tasks';
+import UsersManager from './components/views/usersManager';
+import PaymentView from './components/views/payment';
+import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
+import Managers from './components/views/managers';
 
-import createProjectData from './assets/createProject.json';
+
 
 
 class App extends Component {
@@ -17,8 +25,7 @@ class App extends Component {
   }
 
   render() { 
-    const stepperData = createProjectData.stepper;
-    const viewsDefaultValue = createProjectData.viewsDefaultValue;
+    
     return ( 
       <div className="App">
         <ToastContainer/>
@@ -37,9 +44,18 @@ class App extends Component {
                 </div>
             </div>
             <div className="gap"></div>
-            <div className="panel-right shadow p-3 mb-5 bg-white rounded">
-                <h4>Project Creation Workflow(max 20 steps)</h4> 
-                <Stepper key="1" totalSteps={stepperData.length} stepperData={stepperData} viewsValue={viewsDefaultValue}/>
+            <div className="content panel-right shadow p-3 mb-5 bg-white rounded">
+                <Switch>
+                  <Route path="/calendar" component={CalendarView} />
+                  <Route path="/create-project" component={CreateProject} />
+                  <Route path="/tasks" component={Tasks} />
+                  <Route path="/user-manager" component={UsersManager} />
+                  <Route path="/managers" component={Managers} />
+                  <Route path="/payments" component={PaymentView} />
+                  <Route path="/not-found" component={NotFound} />
+                  <Route path="/" exact component={Dashboard} />
+                  <Redirect to="/not-found" />
+                </Switch>
             </div>
          
        </div>
