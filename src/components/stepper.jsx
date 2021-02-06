@@ -60,6 +60,7 @@ class Stepper extends Component {
         };
         const requestPayLoad = {...this.state.viewData};
         requestPayLoad.uuid = uuidv4();
+        requestPayLoad.timestamp = new Date().valueOf();
         const response = await http.post(apiEndPoint,requestPayLoad,options);
         toast.success(response.message);
     };
