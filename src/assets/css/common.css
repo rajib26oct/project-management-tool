@@ -1,0 +1,21 @@
+.App .nav-item{margin-bottom: 4px;}
+.App .nav-link{
+    color: #555353;
+    background: linear-gradient(to right, #FFF 50%, #666 50%);
+    background-size: 200% 100%;
+    background-position: left bottom;
+    transition: all 0.3s ease;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.App a.nav-link.active{color: #0077bd;}
+.App a.nav-link:hover{background-color: #666; color: #FFF;border-radius: 40px;background-position:right bottom;}
+
+.App .nav-link i{font-size: 20px;margin-right: 4px;vertical-align: -2px;width: 30px;}
+.App .nav-panel{margin-top: 10px;}
+
+.App .page-title{font-size: 24px;}
+
+.App select.form-control{height: 18px!important;font-size: 12px;}
+
+

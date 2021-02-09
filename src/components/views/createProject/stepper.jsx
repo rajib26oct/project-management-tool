@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Views from './views';
-import http from '../services/httpService';
+import CreateProjectView from './createProjectView';
+import http from '../../../services/httpService';
 import { v4 as uuidv4 } from 'uuid';
 import Cookies from 'js-cookie'
 import { toast } from "react-toastify";
@@ -13,7 +13,8 @@ class Stepper extends Component {
     state = {
         currentStep: 1,
         data: this.props.stepperData,
-        viewData: this.props.viewsValue
+        cpFormData: this.props.createProjectFormData,
+        cpFieldsDefaultData: this.props.fieldsDefaultData
       }
 
     componentDidMount(){
@@ -58,11 +59,12 @@ class Stepper extends Component {
                 'X-CSRFToken': csrfToken
             }
         };
-        const requestPayLoad = {...this.state.viewData};
+        const requestPayLoad = {...this.state.cpFormData};
         requestPayLoad.uuid = uuidv4();
         requestPayLoad.timestamp = new Date().valueOf();
         const response = await http.post(apiEndPoint,requestPayLoad,options);
-        toast.success(response.message);
+        //toast.success(response.message);
+        toast.success("Project is created with the name of "+ response.project_id);
     };
 
     
@@ -93,13 +95,17 @@ class Stepper extends Component {
                     }
                 </div>
                 
-                <Views view={currentView} viewName={viewName} viewData={this.state.viewData}/>
+                <CreateProjectView 
+                    view={currentView} 
+                    viewName={viewName} 
+                    cpFormData={this.state.cpFormData}
+                    cpFieldsDefaultData={this.state.cpFieldsDefaultData}/>
 
                 
                 <div className="button-container">
-                    <button type="button" onClick={() => this.updateView('prev')} className="btn btn-dark btn-lg ml-2" disabled={disabled}>Not Sure</button>
-                    <button type="button" onClick={() => this.updateView('next')}  className="btn btn-dark btn-lg ml-2" >Yes, I'm Sure</button>
-                    <button type="button" onClick={() => this.onSubmitProjectInformation()} className="btn btn-dark btn-lg ml-2">Submit Data</button>
+                    <button type="button" onClick={() => this.updateView('prev')} className={this.getDisplayClasses('')} disabled={disabled}><i className="fa fa-caret-left" aria-hidden="true"></i>Not Sure</button>
+                    <button type="button" onClick={() => this.updateView('next')}  className={this.getDisplayClasses('')} >Yes, I'm Sure <i className="fa fa-caret-right" aria-hidden="true"></i></button>
+                    <button type="button" onClick={() => this.onSubmitProjectInformation()} className={this.getDisplayClasses('submit')}>Submit Data</button>
                 </div>
             </div>
         );
@@ -109,6 +115,16 @@ class Stepper extends Component {
        let classes = "step ";
        classes += stepData.action !=="" ? stepData.action : "";
        return classes;
+    }
+
+    getDisplayClasses(btnType){
+        let classes = "btn btn-dark btn-lg ml-2 ";
+        if(this.state.currentStep === this.props.totalSteps){
+           classes += (btnType === "submit") ? "" : "display-hide";
+        } else{
+            classes += (btnType === "submit") ? "display-hide" : "";
+        }
+        return classes;
     }
 }
  

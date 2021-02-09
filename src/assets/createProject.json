@@ -39,15 +39,32 @@
 
   ],
 
-   "viewsDefaultValue":{
+   "createProjectFormData":{
 		"projectDemographic": {
+      "clientName":"",
 			"projectName":"",
-			"projectDescription":"",
-			"projectMethodology":"agile"
+			"additionalComments":"",
+			"Portfolio":"",
+      "lifeCyclePhase":"",
+      "country":""
 		},
 	    "timeline": {
 			"projectStartDate": "",
 			"projectDuration": ""
 		}
+   },
+
+   "fieldsDefaultData":{
+     "projectDemographic":{
+        "portfolio" : [
+          { "value": "1", "label": "Portfolio-1" },
+          { "value": "2", "label": "Portfolio-2" },
+          { "value": "3", "label": "Portfolio-3" }
+        ],
+        "lifeCyclePhase":[
+            { "key":"lifeCyclePhase-1", "value": "mobilize", "label": "Intiate/Mobilize" },
+            { "key":"lifeCyclePhase-2", "value": "execute", "label": "Execute" }
+        ]
+    }
    }
 }

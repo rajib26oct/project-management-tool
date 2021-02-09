@@ -4,17 +4,17 @@ import Header from './components/header';
 import SideNavBar from './components/sideNavBar';
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./components/views/dashboard";
-import CreateProject from './components/views/createProject';
+import CreateProject from './components/views/createProject/createProject';
 import NotFound from "./components/views/notFound";
 import CalendarView from './components/views/calendar';
 import Tasks from './components/views/tasks';
 import UsersManager from './components/views/usersManager';
 import PaymentView from './components/views/payment';
-import './App.css';
-import 'react-toastify/dist/ReactToastify.css';
 import Managers from './components/views/managers';
 
-
+import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './assets/css/common.css';
 
 
 class App extends Component {
