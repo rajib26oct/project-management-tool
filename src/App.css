@@ -28,12 +28,19 @@ header .header-icon{
 .panel .panel-left{ width: 20%; height:auto; min-height: 500px; border-radius: 20px!important; box-sizing: border-box;}
 .panel .panel-right{ width: 78%; height: auto;border-radius: 20px!important; box-sizing: border-box;position: relative;}
 .button-container{text-align: center;margin: 40px 0px 20px;border-top: 1px solid #ccc;padding-top: 20px;position: absolute;width: calc(100% - 30px); bottom: 0px;}
-.button-container button{border-radius: 56px;padding: 10px 40px;width: 140px;font-size: 12px;}
+.button-container button{border-radius: 56px;padding: 10px 40px;min-width: 140px;font-size: 12px;}
 
 .views{width: 50%;margin-bottom: 100px; }
-.views label{font-size: 12px;}
+.views label,.views span{font-size: 12px;}
 .views .react-datepicker__tab-loop{z-index: 9;}
 textarea{resize: none;}
+
+.form-group.required .form-label:after {
+  content:"*";
+  color:#FF0000;
+  font-weight: bold;
+  margin-left: 2px;
+}
 .App .form-control{
     border-radius: 6px;
     resize: none;
@@ -52,10 +59,13 @@ textarea{resize: none;}
 	padding-top: 20px;
 }
 
+.App .logout-section .logout-icon{margin-left: 22px;margin-top: 2px;cursor: pointer;}
+.App .logout-section .logout-icon:hover{color: #0077bd;}
+
 .react-datepicker-wrapper{width: 100%;}
 .date-picker-custom-input i{
 	position: absolute;
-	top: 3px;
+	top: 4px;
     right: -16px;
 	font-size: 28px;
 }

@@ -4,54 +4,85 @@
       "id": 1,
       "label": "Project Demograpics",
       "name":"projectDemographic",
-      "action": "active"
+      "action": "active",
+      "footer-buttons": [
+        {"name": "changeMyMind", "label":"Change my mind, go back"},
+        {"name": "goodToGo", "label":"Good To Go"}
+      ]
     },
     {
       "id": 2,
-      "label": "Timeline",
-      "name": "timeline",
-      "action": ""
+      "label": "Contract Details",
+      "name": "contractDetails",
+      "action": "",
+      "footer-buttons": [
+        {"name": "notSure", "label":"Not Sure"},
+        {"name": "sure", "label":"Yes, I'm Sure"}
+      ]
     },
     {
       "id": 3,
-      "label": "Project Team",
-      "name": "projectTeam",
-      "action": ""
+      "label": "Scope",
+      "name": "scope",
+      "action": "",
+      "footer-buttons": [
+        {"name": "notSure", "label":"Not Sure"},
+        {"name": "sure", "label":"Yes, I'm Sure"}
+      ]
     },
     {
       "id": 4,
-      "label": "Risk",
-      "name": "risk",
-      "action": ""
+      "label": "Key Contacts",
+      "name": "keyContacts",
+      "action": "",
+      "footer-buttons": [
+        {"name": "notSure", "label":"Not Sure"},
+        {"name": "sure", "label":"Yes, I'm Sure"}
+      ]
     },
     {
       "id": 5,
-      "label": "Dependency",
-      "name": "dependency",
-      "action": ""
+      "label": "Risk",
+      "name": "risk",
+      "action": "",
+      "footer-buttons": [
+        {"name": "notSure", "label":"Not Sure"},
+        {"name": "sure", "label":"Yes, I'm Sure"}
+      ]
     },
     {
       "id": 6,
-      "label": "Confirm/Create",
+      "label": "Confirmation",
       "name": "confirmation",
-      "action": ""
+      "action": "",
+      "footer-buttons": [
+        {"name": "back", "label":"Back"},
+        {"name": "submit", "label":"Submit"}
+      ]
     }
 
   ],
 
    "createProjectFormData":{
-		"projectDemographic": {
-      "clientName":"",
-			"projectName":"",
-			"additionalComments":"",
-			"Portfolio":"",
-      "lifeCyclePhase":"",
-      "country":""
-		},
-	    "timeline": {
-			"projectStartDate": "",
-			"projectDuration": ""
-		}
+      "projectDemographic": {
+        "clientName":"",
+        "projectName":"",
+        "additionalComments":"",
+        "Portfolio":"",
+        "lifeCyclePhase":"",
+        "country":""
+      },
+      "contractDetails": {
+        "projectStartDate": "",
+        "projectDuration": "",
+        "dealSize":""
+      },
+      "scope":{
+        "technologies":"",
+        "solutionDescription": "",
+        "deliveryType": "",
+        "phaseofProjects":""
+      }
    },
 
    "fieldsDefaultData":{
@@ -65,6 +96,23 @@
             { "key":"lifeCyclePhase-1", "value": "mobilize", "label": "Intiate/Mobilize" },
             { "key":"lifeCyclePhase-2", "value": "execute", "label": "Execute" }
         ]
+    },
+    "scope":{
+      "deliveryType":[
+        {"value":"waterfall", "label": "Application Development - Waterfall"},
+        {"value":"agile", "label": "Application Development - Agile"},
+        {"value":"maintenance", "label": "Application Maintenance"},
+        {"value":"testing", "label": "Testing Only"}
+      ],
+      "phaseofProjects":[
+        {"value":"dev", "label": "Dev"},
+        {"value":"testing", "label": "Testing"},
+        {"value":"sit", "label": "SIT"},
+        {"value":"design", "label": "Design"},
+        {"value":"uat", "label": "UAT"},
+        {"value":"business rollout", "label": "Business Rollout"},
+        {"value":"support", "label": "Support"}
+      ]
     }
    }
 }

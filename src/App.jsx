@@ -40,7 +40,12 @@ class App extends Component {
                 </div>
                 <SideNavBar/>
                 <div className="logout-container">
-                  <div className="logout-section">Log out button</div>
+                  <div className="logout-section">
+                     <div className="logout-icon">
+                        <i className="fa fa-sign-out" aria-hidden="true"></i>
+                        <span className="nav-link-text">Log out</span>
+                     </div>
+                  </div>
                 </div>
             </div>
             <div className="gap"></div>

@@ -70,16 +70,16 @@ class Stepper extends Component {
     
 
     render() {
-        let disabled = false;
+        
         const index = this.state.data.findIndex(step => step.action ==="active");
-        disabled = this.state.currentStep === 1 ? true : false;
-
         
        // this.setState({currentStep:index});
 
         let currentView = "view"+this.state.currentStep;
 
-        var viewName = this.state.data[this.state.currentStep-1].name;
+        const currentStepObj = this.state.data[this.state.currentStep-1];
+
+        let viewName = this.state.data[this.state.currentStep-1].name;
         
         return (
             <div>
@@ -102,11 +102,7 @@ class Stepper extends Component {
                     cpFieldsDefaultData={this.state.cpFieldsDefaultData}/>
 
                 
-                <div className="button-container">
-                    <button type="button" onClick={() => this.updateView('prev')} className={this.getDisplayClasses('')} disabled={disabled}><i className="fa fa-caret-left" aria-hidden="true"></i>Not Sure</button>
-                    <button type="button" onClick={() => this.updateView('next')}  className={this.getDisplayClasses('')} >Yes, I'm Sure <i className="fa fa-caret-right" aria-hidden="true"></i></button>
-                    <button type="button" onClick={() => this.onSubmitProjectInformation()} className={this.getDisplayClasses('submit')}>Submit Data</button>
-                </div>
+                {this.getButtons(currentStepObj)}
             </div>
         );
     }
@@ -117,14 +113,32 @@ class Stepper extends Component {
        return classes;
     }
 
-    getDisplayClasses(btnType){
-        let classes = "btn btn-dark btn-lg ml-2 ";
+    getButtons(currentStepObj){
+        /*let classes = "btn btn-dark btn-lg ml-2 ";
         if(this.state.currentStep === this.props.totalSteps){
            classes += (btnType === "submit") ? "" : "display-hide";
         } else{
             classes += (btnType === "submit") ? "display-hide" : "";
         }
-        return classes;
+        return classes;*/
+        let disabled = false;
+        disabled = this.state.currentStep === 1 ? true : false;
+        if(currentStepObj['name'] != "confirmation"){
+            return(
+                <div className="button-container">
+                    <button type="button" onClick={() => this.updateView('prev')} className="btn btn-dark btn-lg ml-2" disabled={disabled}><i className="fa fa-caret-left" aria-hidden="true"></i>{currentStepObj['footer-buttons'][0].label}</button>
+                    <button type="button" onClick={() => this.updateView('next')}  className="btn btn-dark btn-lg ml-2" >{currentStepObj['footer-buttons'][1].label}<i className="fa fa-caret-right" aria-hidden="true"></i></button>
+                </div>
+            )
+        }else{
+            return(
+               <div className="button-container">
+                   <button type="button" onClick={() => this.updateView('prev')} className="btn btn-dark btn-lg ml-2"><i className="fa fa-caret-left" aria-hidden="true"></i>Back</button>
+                   <button type="button" onClick={() => this.onSubmitProjectInformation()} className="btn btn-dark btn-lg ml-2">Submit</button>
+               </div> 
+            )
+        }
+
     }
 }
  

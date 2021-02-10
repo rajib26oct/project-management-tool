@@ -4,15 +4,15 @@ const ProjectDemographics = (props) => {
     return ( 
         <div className="views view-1">
             <form>
-                <div className="form-group">
-                    <label>Client Name</label>
-                    <input type="text" className="form-control" name="clientName"
+                <div className="form-group required">
+                    <label className="form-label">Client Name</label>
+                    <input type="text" className="form-control" name="clientName" required
                         placeholder="Please Enter client name" 
                         value={props.projectDemographic.clientName} 
                         onChange={props.inputChangeHandler}/>
                 </div>
-                <div className="form-group">
-                    <label>Hay! What do you want to name your project?</label>
+                <div className="form-group required">
+                    <label className="form-label">Hay! What do you want to name your project?</label>
                     <input type="text" className="form-control" name="projectName"
                         placeholder="Please Enter project name" 
                         value={props.projectDemographic.projectName} 
@@ -26,8 +26,8 @@ const ProjectDemographics = (props) => {
                         onChange={props.inputChangeHandler}></textarea>
                 </div>
 
-                <div className="form-group">
-                    <label>Portfolio</label>
+                <div className="form-group required">
+                    <label className="form-label">Portfolio</label>
                     <select className="form-control" name="Portfolio" onChange={props.selectChangeHandler}>
                         <option>Choose Portfolio</option>
                         {
@@ -37,9 +37,9 @@ const ProjectDemographics = (props) => {
                         }
                     </select>
                 </div>
-                <div className="form-group">
-                    <label>What phase of the project are you in?</label>
-                    <select className="form-control" name="lifeCyclePhase">
+                <div className="form-group required">
+                    <label className="form-label">What phase of the project are you in?</label>
+                    <select className="form-control" name="lifeCyclePhase" onChange={props.selectChangeHandler}>
                         <option>Choose Project Phase</option>
                         {
                             props.cpFieldsDefaultData.lifeCyclePhase.map( opt =>
@@ -49,9 +49,9 @@ const ProjectDemographics = (props) => {
                     </select>
                 </div>
 
-                <div className="form-group">
-                    <label>Country</label>
-                    <select className="form-control" name="country">
+                <div className="form-group required">
+                    <label className="form-label">Country</label>
+                    <select className="form-control" name="country" onChange={props.selectChangeHandler}>
                         <option>Select Country</option>
                         {
                             countries.countriesData.map( opt =>
