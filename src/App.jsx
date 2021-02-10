@@ -16,11 +16,14 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/css/common.css';
 
+import createProjectData from './assets/createProject.json';
+
 
 class App extends Component {
   state = {  };
   
   async componentDidMount(){
+    createProjectData.createProjectFormData['risk'].push(createProjectData.fieldsDefaultData['risk']['defaultRisk']);
     //const {data: createProject} = await http.get(apiEndPoint);
   }
 
@@ -52,7 +55,8 @@ class App extends Component {
             <div className="content panel-right shadow p-3 mb-5 bg-white rounded">
                 <Switch>
                   <Route path="/calendar" component={CalendarView} />
-                  <Route path="/create-project" component={CreateProject} />
+                  
+                  <Route path="/create-project" render={()=><CreateProject createProjectData={createProjectData}/>} />
                   <Route path="/tasks" component={Tasks} />
                   <Route path="/user-manager" component={UsersManager} />
                   <Route path="/managers" component={Managers} />

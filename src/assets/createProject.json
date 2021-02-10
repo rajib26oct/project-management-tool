@@ -82,7 +82,13 @@
         "solutionDescription": "",
         "deliveryType": "",
         "phaseofProjects":""
-      }
+      },
+      "keyContacts":{
+        "managingDirector":"",
+        "deliveryLead": "",
+        "alternateContact":""
+      },
+      "risk":[]
    },
 
    "fieldsDefaultData":{
@@ -113,6 +119,17 @@
         {"value":"business rollout", "label": "Business Rollout"},
         {"value":"support", "label": "Support"}
       ]
-    }
+    },
+    "risk":{
+        "defaultRisk":{
+              "name":"",
+              "impact":"",
+              "mitigation":"",
+              "dueDate":"",
+              "owner":"",
+              "probability":""
+
+        }
+      }
    }
 }

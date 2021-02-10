@@ -6,7 +6,7 @@ const ProjectDemographics = (props) => {
             <form>
                 <div className="form-group required">
                     <label className="form-label">Client Name</label>
-                    <input type="text" className="form-control" name="clientName" required
+                    <input type="text" className="form-control" name="clientName"
                         placeholder="Please Enter client name" 
                         value={props.projectDemographic.clientName} 
                         onChange={props.inputChangeHandler}/>

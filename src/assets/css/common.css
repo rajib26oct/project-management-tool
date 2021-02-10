@@ -18,4 +18,22 @@
 
 .App select.form-control{height: 18px!important;font-size: 12px;}
 
+.form-group{padding-right: 30px;}
+
+fieldset {
+    border: 1px solid #ccc !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+}
+
+legend {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto!important;
+    padding:0 4px !important;
+    border-bottom:none;
+    color: #102a43!important;
+}
+
 

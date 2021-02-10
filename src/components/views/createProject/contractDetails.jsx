@@ -13,7 +13,7 @@ const getTimeDifference = (contractDetails) =>{
     if(_.isNaN(diffDays)){
         return "";
     }else{
-        return `Total number of days is ${diffDays}`;
+        return `Total number of days: ${diffDays}`;
     }
 }
 
