@@ -23,7 +23,12 @@ class App extends Component {
   state = {  };
   
   async componentDidMount(){
-    createProjectData.createProjectFormData['risk'].push(createProjectData.fieldsDefaultData['risk']['defaultRisk']);
+    const defaultRisk = {...createProjectData.fieldsDefaultData['risk']['defaultRisk']};
+    const phaseOfProjects = [...createProjectData.fieldsDefaultData['scope']['phaseOfProjects']];
+    //console.log(phaseOfProjects)
+    
+    createProjectData.createProjectFormData['risk'].push(defaultRisk);
+    createProjectData.createProjectFormData['scope']['phaseOfProjects'] = phaseOfProjects;
     //const {data: createProject} = await http.get(apiEndPoint);
   }
 
@@ -38,7 +43,10 @@ class App extends Component {
             <div className="panel-left shadow p-3 mb-5 bg-white rounded mr-4">
                 <div className="profile-container">
                   <div className="profile-section">
-                    Profile Icon and Name
+                    <div className="profile-photo">
+                      <i className="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <span className="user-name">Test User</span>
                   </div>
                 </div>
                 <SideNavBar/>

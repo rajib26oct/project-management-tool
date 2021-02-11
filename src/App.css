@@ -30,7 +30,7 @@ header .header-icon{
 .button-container{text-align: center;margin: 40px 0px 20px;border-top: 1px solid #ccc;padding-top: 20px;position: absolute;width: calc(100% - 30px); bottom: 0px;}
 .button-container button{border-radius: 56px;padding: 10px 40px;min-width: 140px;font-size: 12px;}
 
-.views{width: 50%;margin-bottom: 100px; }
+.views{width: 60%;margin-bottom: 100px; padding: 0px 26px 0px; box-sizing: border-box;}
 .views label,.views span{font-size: 12px;}
 .views .react-datepicker__tab-loop{z-index: 9;}
 textarea{resize: none;}
@@ -71,6 +71,33 @@ textarea{resize: none;}
 }
 .react-datepicker__triangle{left: 100px !important;}
 .react-datepicker__navigation{box-sizing: border-box;}
+
+.App .profile-photo{
+    width: 45px;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: relative;
+}
+
+.App .profile-photo .fa-user{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 25px;
+    height: 39px;
+    top: 0px;
+    bottom: 0px;
+    font-size: 36px;
+}
+.App .profile-section .user-name{
+    height: 45px;
+    position: absolute;
+    top: 27px;
+    left: 69px;
+    color: #555353;
+}
 
 
 @media (min-width: 1200px){

@@ -68,20 +68,20 @@
         "clientName":"",
         "projectName":"",
         "additionalComments":"",
-        "Portfolio":"",
+        "portfolio":"",
         "lifeCyclePhase":"",
         "country":""
       },
       "contractDetails": {
-        "projectStartDate": "",
-        "projectDuration": "",
+        "startDate": "",
+        "endDate": "",
         "dealSize":""
       },
       "scope":{
         "technologies":"",
         "solutionDescription": "",
         "deliveryType": "",
-        "phaseofProjects":""
+        "phaseOfProjects":[]
       },
       "keyContacts":{
         "managingDirector":"",
@@ -110,14 +110,14 @@
         {"value":"maintenance", "label": "Application Maintenance"},
         {"value":"testing", "label": "Testing Only"}
       ],
-      "phaseofProjects":[
-        {"value":"dev", "label": "Dev"},
-        {"value":"testing", "label": "Testing"},
-        {"value":"sit", "label": "SIT"},
-        {"value":"design", "label": "Design"},
-        {"value":"uat", "label": "UAT"},
-        {"value":"business rollout", "label": "Business Rollout"},
-        {"value":"support", "label": "Support"}
+      "phaseOfProjects":[
+        {"value":"dev", "label": "Dev","isChecked": false},
+        {"value":"testing", "label": "Testing", "isChecked": false},
+        {"value":"sit", "label": "SIT","isChecked": false},
+        {"value":"design", "label": "Design","isChecked": false},
+        {"value":"uat", "label": "UAT","isChecked": false},
+        {"value":"business rollout", "label": "Business Rollout","isChecked": false},
+        {"value":"support", "label": "Support","isChecked": false}
       ]
     },
     "risk":{
@@ -129,7 +129,11 @@
               "owner":"",
               "probability":""
 
-        }
+        },
+        "probability":[
+           {"value":"prob1", "label": "Probability-1"},
+           {"value":"prob2", "label": "Probability-2"}
+        ]
       }
    }
 }

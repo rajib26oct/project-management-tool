@@ -23,9 +23,13 @@ class CreateProjectView extends Component {
         this.setState({cpFormData});
     }
 
-    handleDropdown = evt =>{
+    handleDropdown = (evt,index) =>{
         const cpFormData = {...this.state.cpFormData};
-        cpFormData[this.props.viewName][evt.currentTarget.name] = evt.currentTarget.value;
+        if(this.props.viewName === 'risk'){
+            cpFormData[this.props.viewName][index][evt.currentTarget.name] = evt.currentTarget.value;
+        }else{
+            cpFormData[this.props.viewName][evt.currentTarget.name] = evt.currentTarget.value;
+        }
         this.setState({cpFormData});
     }
 
@@ -39,6 +43,24 @@ class CreateProjectView extends Component {
         }
         this.setState({cpFormData});
 
+    }
+
+    handleCheckbox = evt =>{
+        const cpFormData = {...this.state.cpFormData};
+        const checked = evt.target.checked;
+        const selectedValue = evt.currentTarget.value;
+
+        cpFormData[this.props.viewName][evt.currentTarget.name].filter(obj => {
+            if(obj.value === selectedValue){obj.isChecked = checked;}
+        });
+
+        this.setState({cpFormData});
+    }
+
+    handleAddRiskRows = () =>{
+        const cpFormData = {...this.state.cpFormData};
+        cpFormData.risk.push(this.props.cpFieldsDefaultData.risk.defaultRisk);
+        this.setState({cpFormData});
     }
 
 
@@ -64,6 +86,7 @@ class CreateProjectView extends Component {
                     cpFieldsDefaultData={this.props.cpFieldsDefaultData.scope}
                     inputChangeHandler={this.handleChange}
                     selectChangeHandler={this.handleDropdown}
+                    chooseCheckboxHandler={this.handleCheckbox}
                 />);
             case 'view4':
                 return(<KeyContacts
@@ -76,6 +99,8 @@ class CreateProjectView extends Component {
                     cpFieldsDefaultData={this.props.cpFieldsDefaultData.risk}
                     inputChangeHandler={this.handleChange}
                     onSelectedDateHandler={this.onSelectedDate}
+                    selectChangeHandler={this.handleDropdown}
+                    addNewRow={this.handleAddRiskRows}
                 />);
             
         

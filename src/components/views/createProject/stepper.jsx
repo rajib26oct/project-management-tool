@@ -4,6 +4,7 @@ import http from '../../../services/httpService';
 import { v4 as uuidv4 } from 'uuid';
 import Cookies from 'js-cookie'
 import { toast } from "react-toastify";
+import _ from 'lodash';
 
 Cookies.set('token',  uuidv4())
 
@@ -59,12 +60,19 @@ class Stepper extends Component {
                 'X-CSRFToken': csrfToken
             }
         };
-        const requestPayLoad = {...this.state.cpFormData};
+        const requestPayLoad = _.cloneDeep(this.state.cpFormData);//{...this.state.cpFormData};
+        const phaseOfProjects =[];
+        requestPayLoad['scope']['phaseOfProjects'].map(obj=>{
+            if(obj.isChecked){phaseOfProjects.push(obj.value)}
+        });
+        requestPayLoad['scope']['phaseOfProjects'] = phaseOfProjects;
         requestPayLoad.uuid = uuidv4();
         requestPayLoad.timestamp = new Date().valueOf();
         const response = await http.post(apiEndPoint,requestPayLoad,options);
         //toast.success(response.message);
-        toast.success("Project is created with the name of "+ response.project_id);
+        toast.success("Successfully created the project",{
+            position: toast.POSITION.TOP_CENTER
+        });
     };
 
     

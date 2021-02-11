@@ -7,7 +7,7 @@ const Risk = (props) => {
                 props.risk.map((data, index) =>
                     <form key={index}>
                         <fieldset>
-                            <legend>Risk-1</legend>
+                            <legend>Risk-{index+1}</legend>
                             <div className="form-group">
                                 <label className="form-label">Risk Title</label>
                                 <input type="text" className="form-control" name="name"
@@ -44,13 +44,34 @@ const Risk = (props) => {
                                     value={data.owner}
                                     onChange={evt=>props.inputChangeHandler(evt,index)}/>
                             </div>
+                            <div className="form-group required">
+                                <label className="form-label">Probability</label>
+                                <select className="form-control" name="probability" onChange={(evt) => props.selectChangeHandler(evt,index)} 
+                                    value={data.probability}>
+                                    <option>Choose probability</option>
+                                    {
+                                        props.cpFieldsDefaultData.probability.map( opt =>
+                                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                        )
+                                    }
+                                </select>
+                            </div>
                             
                         </fieldset>
                     </form>
                 )
             }
+            <button type="button" className="btn btn-dark btn-lg add-rows-btn" disabled={getButtonState(props.risk)}
+             onClick={props.addNewRow}>Add Rows</button>
         </div>
     );
+}
+
+const getButtonState = (risk) =>{
+    const riskObj = risk.find(r => r.name === "");
+
+    if(riskObj === undefined) return false;
+    return true
 }
  
 export default Risk;

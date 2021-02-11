@@ -2,9 +2,9 @@ import DatePickerComp from "../../datePickerComp";
 import _ from 'lodash';
 
 const getTimeDifference = (contractDetails) =>{
-    const {projectStartDate, projectDuration} = contractDetails;
-    const date1 = new Date(projectStartDate).valueOf();
-    const date2 = new Date(projectDuration).valueOf();
+    const {startDate, endDate} = contractDetails;
+    const date1 = new Date(startDate).valueOf();
+    const date2 = new Date(endDate).valueOf();
     if(date1 > date2){
         return "";
     }
@@ -24,16 +24,16 @@ const ContractDetails = (props) => {
                 <div className="form-group required">
                     <label className="form-label">When do you think the project will start?</label>
                     <div className="input-group date" data-date-format="dd.mm.yyyy">
-                        <DatePickerComp name="projectStartDate"
-                            selectedDate={props.contractDetails.projectStartDate}
+                        <DatePickerComp name="startDate"
+                            selectedDate={props.contractDetails.startDate}
                             onSelectDate={props.onSelectedDateHandler}/>
                     </div>
                 </div>
                 <div className="form-group required">
                     <label className="form-label">How long will the project last?</label>
                     <div className="input-group date" data-date-format="dd.mm.yyyy">
-                        <DatePickerComp name="projectDuration"
-                            selectedDate={props.contractDetails.projectDuration}
+                        <DatePickerComp name="endDate"
+                            selectedDate={props.contractDetails.endDate}
                             onSelectDate={props.onSelectedDateHandler}/>
                         <label className="total-days">{getTimeDifference(props.contractDetails)}</label>
                     </div>

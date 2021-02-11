@@ -2,3 +2,13 @@
 .App .fa.fa-caret-right{margin-left: 10px;font-size: 18px;vertical-align: -2px;}
 .App .display-hide{display: none;}
 .App .total-days{margin-top: 4px;font-weight: bold;}
+
+.App .view-5{width: 100%;}
+.App .view-5 .form-group{width: 46%;display: inline-block;}
+.App .view-5 .form-group:nth-child(odd){margin-left: 10px;}
+
+.App .add-rows-btn{
+    padding: 8px 16px;
+    border-radius: 56px;
+    font-size: 12px;
+}
