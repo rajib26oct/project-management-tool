@@ -44,7 +44,7 @@ const Risk = (props) => {
                                     value={data.owner}
                                     onChange={evt=>props.inputChangeHandler(evt,index)}/>
                             </div>
-                            <div className="form-group required">
+                            <div className="form-group">
                                 <label className="form-label">Probability</label>
                                 <select className="form-control" name="probability" onChange={(evt) => props.selectChangeHandler(evt,index)} 
                                     value={data.probability}>
