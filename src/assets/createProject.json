@@ -86,54 +86,83 @@
       "keyContacts":{
         "managingDirector":"",
         "deliveryLead": "",
+        "deliveryManager":"",
         "alternateContact":""
       },
       "risk":[]
    },
 
    "fieldsDefaultData":{
-     "projectDemographic":{
-        "portfolio" : [
-          { "value": "1", "label": "Portfolio-1" },
-          { "value": "2", "label": "Portfolio-2" },
-          { "value": "3", "label": "Portfolio-3" }
-        ],
-        "lifeCyclePhase":[
-            { "key":"lifeCyclePhase-1", "value": "mobilize", "label": "Intiate/Mobilize" },
-            { "key":"lifeCyclePhase-2", "value": "execute", "label": "Execute" }
-        ]
-    },
-    "scope":{
-      "deliveryType":[
-        {"value":"waterfall", "label": "Application Development - Waterfall"},
-        {"value":"agile", "label": "Application Development - Agile"},
-        {"value":"maintenance", "label": "Application Maintenance"},
-        {"value":"testing", "label": "Testing Only"}
-      ],
-      "phaseOfProjects":[
-        {"value":"dev", "label": "Dev","isChecked": false},
-        {"value":"testing", "label": "Testing", "isChecked": false},
-        {"value":"sit", "label": "SIT","isChecked": false},
-        {"value":"design", "label": "Design","isChecked": false},
-        {"value":"uat", "label": "UAT","isChecked": false},
-        {"value":"business rollout", "label": "Business Rollout","isChecked": false},
-        {"value":"support", "label": "Support","isChecked": false}
-      ]
-    },
-    "risk":{
-        "defaultRisk":{
+      "projectDemographic":{
+          "portfolio" : [
+            { "value": "port1", "label": "Portfolio-1" },
+            { "value": "port2", "label": "Portfolio-2" },
+            { "value": "port3", "label": "Portfolio-3" }
+          ],
+          "lifeCyclePhase":[
+              { "key":"lifeCyclePhase-1", "value": "mobilize", "label": "Intiate/Mobilize" },
+              { "key":"lifeCyclePhase-2", "value": "execute", "label": "Execute" }
+          ],
+
+          "labelInformation":[
+            {"key": "clientName", "label": "Client Name"},
+            {"key": "projectName", "label": "Hay! What do you want to name your project?"},
+            {"key": "additionalComments", "label": "Additional Comments"},
+            {"key": "lifeCyclePhase", "label": "Lifecycle Phase"},
+            {"key": "country", "label": "Country"}
+          ]
+      },
+      "contractDetails":{
+          "labelInformation":[
+            {"key": "startDate", "label": "When do you think the project will start?"},
+            {"key": "endDate", "label": "How long will the project last?"},
+            {"key": "dealSize", "label": "Deal Size (in USD)"}
+          ]
+      },
+      "scope":{
+          "deliveryType":[
+            {"value":"waterfall", "label": "Application Development - Waterfall"},
+            {"value":"agile", "label": "Application Development - Agile"},
+            {"value":"maintenance", "label": "Application Maintenance"},
+            {"value":"testing", "label": "Testing Only"}
+          ],
+          "phaseOfProjects":[
+            {"value":"dev", "label": "Dev","isChecked": false},
+            {"value":"testing", "label": "Testing", "isChecked": false},
+            {"value":"sit", "label": "SIT","isChecked": false},
+            {"value":"design", "label": "Design","isChecked": false},
+            {"value":"uat", "label": "UAT","isChecked": false},
+            {"value":"business rollout", "label": "Business Rollout","isChecked": false},
+            {"value":"support", "label": "Support","isChecked": false}
+          ],
+          "labelInformation":[
+            {"key": "technologies", "label": "Technologies"},
+            {"key": "solutionDescription", "label": "Solution Description"},
+            {"key": "deliveryType", "label": "Delivery Type"}
+          ]
+      },
+
+      "keyContacts":{
+          "labelInformation":[
+            {"key": "managingDirector", "label": "Project Managing Director"},
+            {"key": "deliveryLead", "label": "Project Delivery Lead"},
+            {"key": "deliveryManager", "label": "Project Delivery Manager"},
+            {"key": "alternateContact", "label": "Alternate Contact"}
+          ]
+      },
+      "risk":{
+          "defaultRisk":{
               "name":"",
               "impact":"",
               "mitigation":"",
               "dueDate":"",
               "owner":"",
               "probability":""
-
-        },
-        "probability":[
-           {"value":"prob1", "label": "Probability-1"},
-           {"value":"prob2", "label": "Probability-2"}
-        ]
-      }
+          },
+          "probability":[
+            {"value":"prob1", "label": "Probability-1"},
+            {"value":"prob2", "label": "Probability-2"}
+          ]
+        }
    }
 }

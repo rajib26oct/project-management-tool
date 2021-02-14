@@ -4,66 +4,11 @@ import ContractDetails from './contractDetails';
 import Scope from './scope';
 import KeyContacts from './keyContacts';
 import Risk from './risk';
-
+import Confirmation from './confirmation';
 
 
 class CreateProjectView extends Component {
-    state = { 
-        cpFormData:this.props.cpFormData
-     };
     
-    handleChange = (evt,index) =>{
-        //this.props.onChangeFormFields(evt);
-        const cpFormData = {...this.state.cpFormData};
-        if(this.props.viewName === 'risk'){
-            cpFormData[this.props.viewName][index][evt.currentTarget.name] = evt.currentTarget.value;
-        }else{
-            cpFormData[this.props.viewName][evt.currentTarget.name] = evt.currentTarget.value;
-        }
-        this.setState({cpFormData});
-    }
-
-    handleDropdown = (evt,index) =>{
-        const cpFormData = {...this.state.cpFormData};
-        if(this.props.viewName === 'risk'){
-            cpFormData[this.props.viewName][index][evt.currentTarget.name] = evt.currentTarget.value;
-        }else{
-            cpFormData[this.props.viewName][evt.currentTarget.name] = evt.currentTarget.value;
-        }
-        this.setState({cpFormData});
-    }
-
-    onSelectedDate = (date,name,index) =>{
-        //console.log(evt)
-        const cpFormData = {...this.state.cpFormData};
-        if(this.props.viewName === 'risk'){
-            cpFormData[this.props.viewName][index][name] = date;
-        }else{
-            cpFormData[this.props.viewName][name] = date;
-        }
-        this.setState({cpFormData});
-
-    }
-
-    handleCheckbox = evt =>{
-        const cpFormData = {...this.state.cpFormData};
-        const checked = evt.target.checked;
-        const selectedValue = evt.currentTarget.value;
-
-        cpFormData[this.props.viewName][evt.currentTarget.name].filter(obj => {
-            if(obj.value === selectedValue){obj.isChecked = checked;}
-        });
-
-        this.setState({cpFormData});
-    }
-
-    handleAddRiskRows = () =>{
-        const cpFormData = {...this.state.cpFormData};
-        cpFormData.risk.push(this.props.cpFieldsDefaultData.risk.defaultRisk);
-        this.setState({cpFormData});
-    }
-
-
     render() { 
 
         switch (this.props.view) {
@@ -71,37 +16,44 @@ class CreateProjectView extends Component {
                 return ( <ProjectDemographics 
                         projectDemographic={this.props.cpFormData.projectDemographic}
                         cpFieldsDefaultData={this.props.cpFieldsDefaultData.projectDemographic}
-                        inputChangeHandler={this.handleChange}
-                        selectChangeHandler={this.handleDropdown}
+                        inputChangeHandler={this.props.inputChangeHandler}
+                        selectChangeHandler={this.props.selectChangeHandler}
+                        error={this.props.errors}
                   /> );
             case 'view2':
                 return( <ContractDetails
                     contractDetails={this.props.cpFormData.contractDetails}
-                    inputChangeHandler={this.handleChange}
-                    onSelectedDateHandler={this.onSelectedDate}
+                    inputChangeHandler={this.props.inputChangeHandler}
+                    onSelectedDateHandler={this.props.onSelectedDateHandler}
+                    error={this.props.errors}
                 />);
             case 'view3':
                  return(<Scope
                     scope={this.props.cpFormData.scope}
                     cpFieldsDefaultData={this.props.cpFieldsDefaultData.scope}
-                    inputChangeHandler={this.handleChange}
-                    selectChangeHandler={this.handleDropdown}
-                    chooseCheckboxHandler={this.handleCheckbox}
+                    inputChangeHandler={this.props.inputChangeHandler}
+                    selectChangeHandler={this.props.selectChangeHandler}
+                    chooseCheckboxHandler={this.props.chooseCheckboxHandler}
+                    error={this.props.errors}
                 />);
             case 'view4':
                 return(<KeyContacts
                     keyContacts={this.props.cpFormData.keyContacts}
-                    inputChangeHandler={this.handleChange}
+                    inputChangeHandler={this.props.inputChangeHandler}
+                    error={this.props.errors}
                 />);
             case 'view5':
                 return(<Risk
                     risk={this.props.cpFormData.risk}
                     cpFieldsDefaultData={this.props.cpFieldsDefaultData.risk}
-                    inputChangeHandler={this.handleChange}
-                    onSelectedDateHandler={this.onSelectedDate}
-                    selectChangeHandler={this.handleDropdown}
-                    addNewRow={this.handleAddRiskRows}
+                    inputChangeHandler={this.props.inputChangeHandler}
+                    onSelectedDateHandler={this.props.onSelectedDateHandler}
+                    selectChangeHandler={this.props.selectChangeHandler}
+                    addNewRow={this.props.addNewRow}
                 />);
+
+            case 'view6':
+                return (<Confirmation cpFormData={this.props.cpFormData} cpFieldsDefaultData={this.props.cpFieldsDefaultData}/>)
             
         
             default: return(<div>{this.props.view} content</div>);

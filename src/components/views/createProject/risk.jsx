@@ -5,7 +5,7 @@ const Risk = (props) => {
         <div className="views view-5">
             {
                 props.risk.map((data, index) =>
-                    <form key={index}>
+                    <form key={index} autoComplete="off">
                         <fieldset>
                             <legend>Risk-{index+1}</legend>
                             <div className="form-group">
@@ -18,14 +18,14 @@ const Risk = (props) => {
                             <div className="form-group">
                                 <label className="form-label">Impact</label>
                                 <input type="text" className="form-control" name="impact"
-                                    placeholder="Please Enter risk name" 
+                                    placeholder="Please Enter Impact" 
                                     value={data.impact}
                                     onChange={evt=>props.inputChangeHandler(evt,index)}/>
                             </div>
                             <div className="form-group">
                                 <label className="form-label">Mitigation</label>
                                 <input type="text" className="form-control" name="mitigation"
-                                    placeholder="Please Enter risk name" 
+                                    placeholder="Please Enter Mitigation" 
                                     value={data.mitigation}
                                     onChange={evt=>props.inputChangeHandler(evt,index)}/>
                             </div>
@@ -40,7 +40,7 @@ const Risk = (props) => {
                             <div className="form-group">
                                 <label className="form-label">Owner</label>
                                 <input type="text" className="form-control" name="owner"
-                                    placeholder="Please Enter risk name" 
+                                    placeholder="Please Enter Owner" 
                                     value={data.owner}
                                     onChange={evt=>props.inputChangeHandler(evt,index)}/>
                             </div>

@@ -4,6 +4,7 @@ import http from '../../../services/httpService';
 import { v4 as uuidv4 } from 'uuid';
 import Cookies from 'js-cookie'
 import { toast } from "react-toastify";
+import Joi from "joi-browser";
 import _ from 'lodash';
 
 Cookies.set('token',  uuidv4())
@@ -15,7 +16,8 @@ class Stepper extends Component {
         currentStep: 1,
         data: this.props.stepperData,
         cpFormData: this.props.createProjectFormData,
-        cpFieldsDefaultData: this.props.fieldsDefaultData
+        cpFieldsDefaultData: this.props.fieldsDefaultData,
+        errors: {}
       }
 
     componentDidMount(){
@@ -24,6 +26,13 @@ class Stepper extends Component {
     }
 
     updateView = view => {
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        if(viewName !== 'risk' && viewName !== 'confirmation'){
+            const errors = this.validate();
+            this.setState({ errors: errors || {} });
+            if (errors) return;
+        }
+
         let currentStep = this.state.currentStep;
 
         if(view === 'next' && this.state.currentStep < this.props.totalSteps){
@@ -53,7 +62,8 @@ class Stepper extends Component {
        console.log(`${view}  ${currentStep}`);
     };
 
-    onSubmitProjectInformation = async () => {
+    onSubmitProjectInformation = async (e) => {
+        e.preventDefault();
         const csrfToken = Cookies.get('token');
         const options = {
             headers: {
@@ -75,6 +85,158 @@ class Stepper extends Component {
         });
     };
 
+    handleChange = (evt,index) =>{
+        const { currentTarget: input } = evt;
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        let errors = {};
+        
+        const cpFormData = {...this.state.cpFormData};
+        if(viewName === 'risk'){
+            cpFormData[viewName][index][input.name] = input.value;
+        }else{
+            errors = this.getError(input);
+            cpFormData[viewName][input.name] = input.value;
+        }
+        this.setState({cpFormData, errors});
+    }
+
+    handleDropdown = (evt,index) =>{
+        const { currentTarget: input } = evt;
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        let errors = {};
+
+        const cpFormData = {...this.state.cpFormData};
+        if(viewName === 'risk'){
+            cpFormData[viewName][index][input.name] = input.value;
+        }else{
+            errors = this.getError(input);
+            cpFormData[viewName][input.name] = input.value;
+        }
+        this.setState({cpFormData,errors});
+    }
+
+    onSelectedDate = (date,name,index) =>{
+        if(name === undefined){
+            return;
+        }
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        let errors = {};
+        //console.log(evt)
+        const cpFormData = {...this.state.cpFormData};
+        if(viewName === 'risk'){
+            cpFormData[viewName][index][name] = date;
+        }else{
+            errors = this.getError({name: name, value: date});
+            cpFormData[viewName][name] = date;
+        }
+        this.setState({cpFormData, errors});
+
+    }
+
+    handleCheckbox = evt =>{
+        const { currentTarget: input } = evt;
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        let errors = {};
+        errors = this.getError(input);
+
+        const cpFormData = {...this.state.cpFormData};
+        const checked = evt.target.checked;
+        const selectedValue = evt.currentTarget.value;
+
+        cpFormData[viewName][evt.currentTarget.name].filter(obj => {
+            if(obj.value === selectedValue){obj.isChecked = checked;}
+        });
+
+        this.setState({cpFormData,errors});
+    }
+
+    handleAddRiskRows = () =>{
+        const cpFormData = {...this.state.cpFormData};
+        const defaultRisk = _.cloneDeep(this.state.cpFieldsDefaultData.risk.defaultRisk);
+        cpFormData.risk.push(defaultRisk);
+        this.setState({cpFormData});
+    }
+
+    getError = (input)=>{
+        const errors = { ...this.state.errors };
+        const errorMessage = this.validateProperty(input);
+        if (errorMessage!=null){
+            errors[input.name] = errorMessage;
+        } 
+        else{
+            delete errors[input.name];
+
+        }
+        return errors;
+    }
+    
+    validate = () => {
+        const options = { abortEarly: false };
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        const { error } = Joi.validate(this.state.cpFormData[viewName], this.schema[viewName], options);
+        //const { error } = this.schema.validate(this.state.cpFormData[viewName]);
+        if (!error) return null;
+
+        const errors = {};
+        if(error.details !==undefined){
+            error.details = _.uniqBy(error.details, function (item) {
+                return item.path[0];
+            });
+        }
+        for (let item of error.details)errors[item.path[0]] = item.message;
+        return errors;
+    };
+
+    validateProperty = ({ name, value }) => {
+        const viewName = this.state.data[this.state.currentStep-1].name;
+        const obj = { [name]: value };
+        const schema = { [name]: this.schema[viewName][name] };
+        const { error } = Joi.validate(obj, schema);
+        //const { error } = this.props.schema.validate(obj);
+        return error ? error.details[0].message : null;
+    };
+
+    schema = {
+        projectDemographic:{
+            /*clientName: Joi.string().empty(''),
+            projectName: Joi.string().empty(''),
+            additionalComments: Joi.string().empty(''),
+            portfolio: Joi.string().empty(''),
+            lifeCyclePhase: Joi.string().empty(''),
+            country: Joi.string().empty('')*/
+            
+            clientName: Joi.string().required().label("Client Name").min(3).max(30),
+            projectName: Joi.string().required().label("Project Name").min(3).max(30),
+
+            additionalComments: Joi.string().empty(''),
+
+            portfolio: Joi.string().required().min(2).error(() => { return { message: 'Please choose Portfolio'};}),
+
+            lifeCyclePhase: Joi.string().required().min(2).error(() => {return {message: 'Please Choose Project Phase'};}),
+            country: Joi.string().required().min(2).error(() => {return {message: 'Please select country'};})
+        },
+
+        contractDetails:{
+            startDate: Joi.date().raw().required().label("Project start date"),
+            endDate: Joi.date().raw().required().label("Project end date"),
+            dealSize: Joi.number().positive().greater(0).required().label("Deal Size")
+        },
+
+        scope:{
+            technologies: Joi.string().required().label("Technologies").min(3).max(30),
+            solutionDescription: Joi.string().empty(''),
+            deliveryType: Joi.string().required().min(2).error(() => { return { message: 'Please choose Delivery Type'};}),
+            phaseOfProjects: Joi.array().empty('')
+            //.error(() => { return { message: 'Please choose atleast one phase Of Projects'};})
+        },
+
+        keyContacts:{
+            managingDirector: Joi.string().required().label("Managing Director").min(3).max(30),
+            deliveryLead: Joi.string().required().label("Delivery Lead").min(3).max(30),
+            deliveryManager: Joi.string().required().label("Delivery Manager").min(3).max(30),
+            alternateContact: Joi.string().empty('')
+        }
+    };
     
 
     render() {
@@ -107,7 +269,14 @@ class Stepper extends Component {
                     view={currentView} 
                     viewName={viewName} 
                     cpFormData={this.state.cpFormData}
-                    cpFieldsDefaultData={this.state.cpFieldsDefaultData}/>
+                    cpFieldsDefaultData={this.state.cpFieldsDefaultData}
+                    inputChangeHandler={this.handleChange}
+                    selectChangeHandler={this.handleDropdown}
+                    onSelectedDateHandler={this.onSelectedDate}
+                    chooseCheckboxHandler={this.handleCheckbox}
+                    addNewRow={this.handleAddRiskRows}
+                    errors={this.state.errors}
+                    schema={this.schema}/>
 
                 
                 {this.getButtons(currentStepObj)}

@@ -3,9 +3,13 @@
 .App .display-hide{display: none;}
 .App .total-days{margin-top: 4px;font-weight: bold;}
 
-.App .view-5{width: 100%;}
-.App .view-5 .form-group{width: 46%;display: inline-block;}
-.App .view-5 .form-group:nth-child(odd){margin-left: 10px;}
+.App .view-5,.App .view-6{width: 100%;}
+.App .view-5 .form-group{width: 48%; display: inline-block;}
+.App .view-5 .form-group:nth-child(odd){padding-right: 0px;}
+
+
+.App .view-6 form label{width: 100%;}
+.App .view-6 form .title{font-weight: bold;}
 
 .App .add-rows-btn{
     padding: 8px 16px;

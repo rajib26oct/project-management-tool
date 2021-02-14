@@ -20,7 +20,7 @@ const getTimeDifference = (contractDetails) =>{
 const ContractDetails = (props) => {
     return (
         <div className="views view-2">   
-            <form>
+            <form autoComplete="off">
                 <div className="form-group required">
                     <label className="form-label">When do you think the project will start?</label>
                     <div className="input-group date" data-date-format="dd.mm.yyyy">
@@ -28,6 +28,7 @@ const ContractDetails = (props) => {
                             selectedDate={props.contractDetails.startDate}
                             onSelectDate={props.onSelectedDateHandler}/>
                     </div>
+                    {props.error.startDate && <div className="alert alert-danger">{props.error.startDate}</div>}
                 </div>
                 <div className="form-group required">
                     <label className="form-label">How long will the project last?</label>
@@ -37,14 +38,16 @@ const ContractDetails = (props) => {
                             onSelectDate={props.onSelectedDateHandler}/>
                         <label className="total-days">{getTimeDifference(props.contractDetails)}</label>
                     </div>
+                    {props.error.endDate && <div className="alert alert-danger">{props.error.endDate}</div>}
                 </div>
 
                 <div className="form-group required">
                     <label className="form-label">Deal Size (in USD)</label>
                     <input type="text" className="form-control" name="dealSize"
-                        placeholder="Please Enter client name" 
+                        placeholder="Please Enter deal size" 
                         value={props.contractDetails.dealSize} 
                         onChange={props.inputChangeHandler}/>
+                    {props.error.dealSize && <div className="alert alert-danger">{props.error.dealSize}</div>}
                 </div>
                 
             </form>    

@@ -1,13 +1,14 @@
 const Scope = (props) => {
     return ( 
         <div className="views view-3">
-            <form>
+            <form autoComplete="off">
                 <div className="form-group required">
                     <label className="form-label">Technologies</label>
                     <input type="text" className="form-control" name="technologies"
-                        placeholder="Please Enter client name" 
+                        placeholder="Please Enter Technologies" 
                         value={props.scope.technologies} 
                         onChange={props.inputChangeHandler}/>
+                     {props.error.technologies && <div className="alert alert-danger">{props.error.technologies}</div>}
                 </div>
                 <div className="form-group">
                     <label>Solution Description</label>
@@ -26,6 +27,7 @@ const Scope = (props) => {
                             )
                         }
                     </select>
+                    {props.error.deliveryType && <div className="alert alert-danger">{props.error.deliveryType}</div>}
                 </div>
                 <div className="form-group required">
                     <label className="form-label">Phase of Projects</label>
@@ -41,6 +43,7 @@ const Scope = (props) => {
                             )
                         }
                     </div>
+                     {props.error.phaseOfProjects && <div className="alert alert-danger">{props.error.phaseOfProjects}</div>}
                 </div>
             </form>
         </div>

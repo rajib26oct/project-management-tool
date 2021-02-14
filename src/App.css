@@ -47,6 +47,7 @@ textarea{resize: none;}
     height: auto;
     font-size: 12px;
     padding: 10px 12px;
+    box-sizing: border-box;
 }
 
 .profile-container{height: 60px;border-bottom: 1px solid #ccc;}
@@ -66,7 +67,7 @@ textarea{resize: none;}
 .date-picker-custom-input i{
 	position: absolute;
 	top: 4px;
-    right: -16px;
+    right: 8px;
 	font-size: 28px;
 }
 .react-datepicker__triangle{left: 100px !important;}
