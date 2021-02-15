@@ -63,7 +63,6 @@ class Stepper extends Component {
     };
 
     onSubmitProjectInformation = async (e) => {
-        e.preventDefault();
         const csrfToken = Cookies.get('token');
         const options = {
             headers: {

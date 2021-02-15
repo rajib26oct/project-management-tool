@@ -19,7 +19,7 @@ const Scope = (props) => {
                 </div>
                 <div className="form-group required">
                     <label className="form-label">Delivery Type</label>
-                    <select className="form-control" name="deliveryType" onChange={props.selectChangeHandler}>
+                    <select className="form-control" name="deliveryType" onChange={props.selectChangeHandler} value={props.scope.deliveryType}>
                         <option>Choose Delivery Type</option>
                         {
                             props.cpFieldsDefaultData['deliveryType'].map( opt =>
