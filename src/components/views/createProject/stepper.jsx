@@ -17,17 +17,20 @@ class Stepper extends Component {
         data: this.props.stepperData,
         cpFormData: this.props.createProjectFormData,
         cpFieldsDefaultData: this.props.fieldsDefaultData,
+        isFreezeStepperProgress: false,
         errors: {}
       }
 
     componentDidMount(){
        const index = this.state.data.findIndex(step => step.action ==="active");
        this.setState({currentStep:index+1});
+       document.title = 'Create Project';
     }
 
     updateView = view => {
         const viewName = this.state.data[this.state.currentStep-1].name;
-        if(viewName !== 'risk' && viewName !== 'confirmation'){
+        
+        if(viewName !== 'risk' && viewName !== 'confirmation' && view === 'next'){
             const errors = this.validate();
             this.setState({ errors: errors || {} });
             if (errors) return;
@@ -46,8 +49,10 @@ class Stepper extends Component {
                 stepData.action = "done";
             }else if(currentStep === stepData.id && view === 'next'){
                 stepData.action = "active";
-            }else if(this.state.currentStep === stepData.id && view === 'prev'){
+            }else if(this.state.currentStep === stepData.id && view === 'prev' && !this.state.isFreezeStepperProgress){
                 stepData.action = "";
+            }else if(this.state.currentStep === stepData.id && view === 'prev' && this.state.isFreezeStepperProgress){
+                stepData.action = "done";
             }else if(currentStep === stepData.id && view === 'prev'){
                 stepData.action = "active";
             }
@@ -140,13 +145,27 @@ class Stepper extends Component {
 
         const cpFormData = {...this.state.cpFormData};
         const checked = evt.target.checked;
-        const selectedValue = evt.currentTarget.value;
+        const selectedValue = input.value;
 
-        cpFormData[viewName][evt.currentTarget.name].filter(obj => {
+        cpFormData[viewName][input.name].filter(obj => {
             if(obj.value === selectedValue){obj.isChecked = checked;}
         });
+        
+        const isValidateCheckBoxes = this.validateCheckboxes(cpFormData[viewName][input.name]);
+        if(isValidateCheckBoxes && errors["phaseOfProjects"] !=undefined){delete errors["phaseOfProjects"]}
 
         this.setState({cpFormData,errors});
+    }
+
+    validateCheckboxes = arrayObj =>{
+        const selectedCheckboxObj = arrayObj.find(obj=>{
+            if(obj.isChecked){
+                return obj;
+            }
+        });
+
+        if(selectedCheckboxObj !== undefined){return true}
+        return false;
     }
 
     handleAddRiskRows = () =>{
@@ -176,13 +195,24 @@ class Stepper extends Component {
         //const { error } = this.schema.validate(this.state.cpFormData[viewName]);
         if (!error) return null;
 
-        const errors = {};
+        let errors = {};
         if(error.details !==undefined){
             error.details = _.uniqBy(error.details, function (item) {
                 return item.path[0];
             });
         }
-        for (let item of error.details)errors[item.path[0]] = item.message;
+
+        for (let item of error.details){
+            errors[item.path[0]] = item.message;
+        }
+
+        if(viewName === "scope"){
+            const isValidateCheckBoxes = this.validateCheckboxes(this.state.cpFormData[viewName]["phaseOfProjects"]);
+            if(isValidateCheckBoxes && errors["phaseOfProjects"] != undefined){
+                delete errors["phaseOfProjects"];
+                if(_.isEmpty(errors)) errors = null;
+            }
+        }
         return errors;
     };
 
@@ -191,9 +221,26 @@ class Stepper extends Component {
         const obj = { [name]: value };
         const schema = { [name]: this.schema[viewName][name] };
         const { error } = Joi.validate(obj, schema);
-        //const { error } = this.props.schema.validate(obj);
         return error ? error.details[0].message : null;
     };
+
+    goToStep = step =>{
+        //const isFreezeStepperProgress = true;
+        const data  = this.state.data.map(stepData => {
+            if(step === stepData.id){
+                stepData.action = "active";
+            }
+            return stepData;
+        });
+
+        let updatedState = {
+            currentStep: step,
+            data: data,
+            isFreezeStepperProgress: true
+        }
+        this.setState(updatedState);
+        //this.setState({isFreezeStepperProgress});
+    }
 
     schema = {
         projectDemographic:{
@@ -225,8 +272,13 @@ class Stepper extends Component {
             technologies: Joi.string().required().label("Technologies").min(3).max(30),
             solutionDescription: Joi.string().empty(''),
             deliveryType: Joi.string().required().min(2).error(() => { return { message: 'Please choose Delivery Type'};}),
-            phaseOfProjects: Joi.array().empty('')
-            //.error(() => { return { message: 'Please choose atleast one phase Of Projects'};})
+            phaseOfProjects: Joi.array().items(
+                Joi.object({
+                    isChecked: Joi.boolean().invalid(false),
+                    value:Joi.string(),
+                    label:Joi.string()
+                })
+            ).error(() => { return { message: 'Please choose atleast one phase Of Projects'};})
         },
 
         keyContacts:{
@@ -274,6 +326,7 @@ class Stepper extends Component {
                     onSelectedDateHandler={this.onSelectedDate}
                     chooseCheckboxHandler={this.handleCheckbox}
                     addNewRow={this.handleAddRiskRows}
+                    goToStep={this.goToStep}
                     errors={this.state.errors}
                     schema={this.schema}/>
 

@@ -1,5 +1,20 @@
 header img{
     width: 100px;
 }
+header .header-icons{float: right;}
+header .header-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 52px;
+    background-color: #fff;
+    display: inline-block;
+    text-align: center;
+    padding-top: 6px;
+    box-sizing: border-box;
+    margin: 0px 2px;
+    cursor: pointer;
+}
 
-header .header-icon{width: 60px; border-radius: 50px; background-color: #fff;}
+.App header .odt-logo{
+    cursor: pointer;
+}

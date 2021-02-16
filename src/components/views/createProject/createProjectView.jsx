@@ -53,7 +53,7 @@ class CreateProjectView extends Component {
                 />);
 
             case 'view6':
-                return (<Confirmation cpFormData={this.props.cpFormData} cpFieldsDefaultData={this.props.cpFieldsDefaultData}/>)
+                return (<Confirmation cpFormData={this.props.cpFormData} cpFieldsDefaultData={this.props.cpFieldsDefaultData} goToStep={this.props.goToStep}/>)
             
         
             default: return(<div>{this.props.view} content</div>);

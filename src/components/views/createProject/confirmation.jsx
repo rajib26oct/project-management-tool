@@ -1,7 +1,6 @@
-
-const Confirmation = (props) => {
-    const cpFormData = props.cpFormData;
-    const defaultData = props.cpFieldsDefaultData;
+let changeStep;
+const Confirmation = ({cpFormData,cpFieldsDefaultData:defaultData, goToStep}) => {
+    changeStep = goToStep;
     return ( 
         <div className="views view-6">
             {
@@ -39,7 +38,7 @@ const getEachStepUI = (displayDataList,step) =>{
     let sectionTitle = "";
     let key='';
     switch (step) {
-        case 1:sectionTitle = "Project Demographic"; break;
+        case 1:sectionTitle = "Project Demographics"; break;
         case 2:sectionTitle = "Contract Details"; break;
         case 3:sectionTitle = "Scope"; break;
         case 4:sectionTitle = "Key Contacts"; break;
@@ -47,6 +46,7 @@ const getEachStepUI = (displayDataList,step) =>{
     return(  
         <form>
             <fieldset>
+                <div className="edit-btn" onClick={()=>changeStep(step)}><i className="fa fa-pencil-square" aria-hidden="true"></i></div>
                 <legend>{sectionTitle}</legend>
                 {
                     displayDataList.map((data, ind) =>
@@ -54,6 +54,7 @@ const getEachStepUI = (displayDataList,step) =>{
                     )
                 }
             </fieldset>
+            
         </form>
     );
 }
