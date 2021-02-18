@@ -31,10 +31,10 @@ const Scope = (props) => {
                 </div>
                 <div className="form-group required">
                     <label className="form-label">Phase of Projects</label>
-                    <div className="form-control">
+                    <div className="form-control two-column">
                         {
                             props.scope['phaseOfProjects'].map( opt =>
-                                <div key={opt.value} className="form-check form-check-inline">
+                                <div key={opt.value} className="form-check mb-2">
                                     <input className="form-check-input" type="checkbox" name="phaseOfProjects" value={opt.value} 
                                         checked={opt.isChecked}
                                         onChange={props.chooseCheckboxHandler}/>

@@ -8,9 +8,11 @@ import '../../../assets/css/createProject.css';
 
 
 const CreateProject = (props) => {
-  const stepperData = props.createProjectData.stepper;
+  /*const stepperData = props.createProjectData.stepper;
   const createProjectFormData = props.createProjectData.createProjectFormData;
-  const fieldsDefaultData = props.createProjectData.fieldsDefaultData;
+  const fieldsDefaultData = props.createProjectData.fieldsDefaultData;*/
+
+  const {stepper: stepperData,createProjectFormData,fieldsDefaultData, initialFormData} = props.createProjectData;
 
   
   return (
@@ -19,7 +21,8 @@ const CreateProject = (props) => {
       <Stepper key="1" totalSteps={stepperData.length} 
         stepperData={stepperData} 
         createProjectFormData={createProjectFormData}
-        fieldsDefaultData={fieldsDefaultData}/>
+        fieldsDefaultData={fieldsDefaultData}
+        initialFormData={initialFormData}/>
     </React.Fragment>
   );
 };

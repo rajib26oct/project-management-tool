@@ -38,5 +38,6 @@ legend {
 
 .btn-dark:focus, .btn-dark.focus{box-shadow: none!important;}
 .App .alert{padding: 10px 12px;font-size: 12px;}
+.App .two-column{column-count: 2;column-gap: 10px;}
 
 

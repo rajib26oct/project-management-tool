@@ -87,6 +87,8 @@ class Stepper extends Component {
         toast.success("Successfully created the project",{
             position: toast.POSITION.TOP_CENTER
         });
+
+        this.resetFormData();
     };
 
     handleChange = (evt,index) =>{
@@ -240,6 +242,29 @@ class Stepper extends Component {
         }
         this.setState(updatedState);
         //this.setState({isFreezeStepperProgress});
+    }
+
+    resetFormData = () =>{
+        const cpFormData = _.cloneDeep(this.props.initialFormData); //{...this.props.initialFormData};
+        
+        const stepperData  = this.state.data.map(stepData => {
+            if(stepData.id===1){
+                stepData.action = "active";
+            }else{
+                stepData.action = "";
+            }
+            return stepData;
+        });
+
+        let updatedState = {
+            currentStep: 1,
+            data:stepperData,
+            cpFormData:cpFormData,
+            isFreezeStepperProgress: false
+        }
+
+        this.setState(updatedState);
+        
     }
 
     schema = {

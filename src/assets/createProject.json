@@ -127,13 +127,13 @@
             {"value":"testing", "label": "Testing Only"}
           ],
           "phaseOfProjects":[
-            {"value":"dev", "label": "Dev","isChecked": false},
-            {"value":"testing", "label": "Testing", "isChecked": false},
-            {"value":"sit", "label": "SIT","isChecked": false},
             {"value":"design", "label": "Design","isChecked": false},
-            {"value":"uat", "label": "UAT","isChecked": false},
-            {"value":"business rollout", "label": "Business Rollout","isChecked": false},
-            {"value":"support", "label": "Support","isChecked": false}
+            {"value":"dev", "label": "Build","isChecked": false},
+            {"value":"sit", "label": "System Integration Testing","isChecked": false},
+            {"value":"uat", "label": "User Interface Testing","isChecked": false},
+            {"value":"testing", "label": "Regression Testing", "isChecked": false},
+            {"value":"support", "label": "Support","isChecked": false},
+            {"value":"business rollout", "label": "Business Rollout","isChecked": false}
           ],
           "labelInformation":[
             {"key": "technologies", "label": "Technologies"},

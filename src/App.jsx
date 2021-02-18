@@ -11,6 +11,7 @@ import Tasks from './components/views/tasks';
 import UsersManager from './components/views/usersManager';
 import PaymentView from './components/views/payment';
 import Managers from './components/views/managers';
+import _ from 'lodash';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -29,6 +30,7 @@ class App extends Component {
     
     createProjectData.createProjectFormData['risk'].push(defaultRisk);
     createProjectData.createProjectFormData['scope']['phaseOfProjects'] = phaseOfProjects;
+    createProjectData.initialFormData = _.cloneDeep(createProjectData.createProjectFormData);
     //const {data: createProject} = await http.get(apiEndPoint);
   }
 
