@@ -80,6 +80,7 @@ class Stepper extends Component {
             if(obj.isChecked){phaseOfProjects.push(obj.value)}
         });
         requestPayLoad['scope']['phaseOfProjects'] = phaseOfProjects;
+        requestPayLoad['contractDetails']['dealSize'] = requestPayLoad['contractDetails']['dealSize'].replaceAll(',', '');
         requestPayLoad.uuid = uuidv4();
         requestPayLoad.timestamp = new Date().valueOf();
         const response = await http.post(apiEndPoint,requestPayLoad,options);
@@ -99,6 +100,11 @@ class Stepper extends Component {
         const cpFormData = {...this.state.cpFormData};
         if(viewName === 'risk'){
             cpFormData[viewName][index][input.name] = input.value;
+        }else if(viewName === 'contractDetails'){ 
+            input.value = input.value.replaceAll(',', '');
+            errors = this.getError(input);
+            if(evt.which >= 37 && evt.which <= 40) return;
+            cpFormData[viewName][input.name] = input.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }else{
             errors = this.getError(input);
             cpFormData[viewName][input.name] = input.value;
@@ -193,7 +199,11 @@ class Stepper extends Component {
     validate = () => {
         const options = { abortEarly: false };
         const viewName = this.state.data[this.state.currentStep-1].name;
-        const { error } = Joi.validate(this.state.cpFormData[viewName], this.schema[viewName], options);
+        const stepData = {...this.state.cpFormData[viewName]};
+        if(viewName === "contractDetails"){
+            stepData.dealSize= stepData.dealSize.replaceAll(',', '');
+        }
+        const { error } = Joi.validate(stepData, this.schema[viewName], options);
         //const { error } = this.schema.validate(this.state.cpFormData[viewName]);
         if (!error) return null;
 

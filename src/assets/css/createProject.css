@@ -26,3 +26,8 @@
     cursor: pointer;
 }
 .App .edit-btn:hover{color:#0077bd;}
+
+.App .currency-container{position: relative;}
+.App .currency-container .currency-symbol{position: absolute;top: 11px;left: 12px;}
+.App .currency-container input[type=text]{padding-left: 18px;}
+.App .each-risk-row:nth-child(even){margin-top: 10px;padding-top: 10px; border-top: 1px dotted #ccc;}

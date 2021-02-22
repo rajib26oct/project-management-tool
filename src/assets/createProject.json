@@ -162,6 +162,15 @@
           "probability":[
             {"value":"prob1", "label": "Probability-1"},
             {"value":"prob2", "label": "Probability-2"}
+          ],
+
+          "labelInformation":[
+            {"key": "name", "label": "Risk Name"},
+            {"key": "impact", "label": "Impact"},
+            {"key": "mitigation", "label": "Mitigation"},
+            {"key": "dueDate", "label": "Due Date"},
+            {"key": "owner", "label": "Owner"},
+            {"key": "probability", "label": "Probability"}
           ]
         }
    }

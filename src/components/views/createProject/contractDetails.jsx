@@ -43,11 +43,15 @@ const ContractDetails = (props) => {
 
                 <div className="form-group required">
                     <label className="form-label">Deal Size (in USD)</label>
-                    <input type="text" className="form-control" name="dealSize"
+                    <div className="currency-container">
+                        <span className="currency-symbol">$</span>
+                        <input type="text" className="form-control" name="dealSize"
                         placeholder="Please Enter deal size" 
                         value={props.contractDetails.dealSize} 
                         onChange={props.inputChangeHandler}/>
-                    {props.error.dealSize && <div className="alert alert-danger">{props.error.dealSize}</div>}
+                        {props.error.dealSize && <div className="alert alert-danger">{props.error.dealSize}</div>}
+                    </div>
+                    
                 </div>
                 
             </form>    
