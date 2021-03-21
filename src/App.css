@@ -11,6 +11,7 @@
 
 .panel .panel-left{ width: 20%; height:auto; min-height: 500px; border-radius: 20px!important; box-sizing: border-box;}
 .panel .panel-right{ width: 78%; height: auto;border-radius: 20px!important; box-sizing: border-box;position: relative;}
+.panel .panel-right.create-project{ width: 100%;}
 .button-container{text-align: center;margin: 40px 0px 20px;border-top: 1px solid #ccc;padding-top: 20px;position: absolute;width: calc(100% - 30px); bottom: 0px;}
 .button-container button{border-radius: 56px;padding: 10px 40px;min-width: 140px;font-size: 12px;}
 

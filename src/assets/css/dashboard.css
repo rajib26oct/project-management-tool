@@ -1,0 +1,55 @@
+.App.dashboard .panel .panel-right{
+    background-color:unset !important;
+    box-shadow: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.dashboard .top-panel, .dashboard .bottom-panel{
+    min-height: 200px;margin: 0px;
+}
+
+.dashboard .same-line{
+    display: inline-block;
+}
+.dashboard .top-panel .chart-panel{
+    width: 66%; 
+    height: 294px;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+.dashboard .top-panel .right-panel{
+    width: 30%;
+    height: 294px;
+}
+.dashboard .bottom-panel .chart-panel{
+    width: 48%; 
+    min-height: 260px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.dashboard .bottom-panel .right-panel{
+    width: 48%;
+    min-height: 260px;
+    display: inline-block;
+}
+
+.dashboard .pie-chart{ 
+    width: 200px; 
+    height: 200px;
+    float: left;
+    margin-left: 10px;
+}
+
+.dashboard .progress-container{
+    width: 60%;
+    float: right;
+}
+
+.dashboard .chart-info-title .number-of-projects{font-weight: bold;}
+.dashboard .panel-1, .dashboard .panel-2{height: 46%; box-sizing: border-box;}
+.dashboard .circle{border-radius: 50%; width: 40px; height: 40px; font-weight: bold; box-sizing: border-box;display: inline-block;}
+.dashboard .font-size-20{font-size: 20px !important;}
+.dashboard .table-view span{font-size: 9px;}

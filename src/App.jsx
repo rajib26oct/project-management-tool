@@ -62,7 +62,7 @@ class App extends Component {
                 </div>
             </div>
             <div className="gap"></div>
-            <div className="content panel-right shadow p-3 mb-5 bg-white rounded">
+            <div className="content panel-right">
                 <Switch>
                   <Route path="/calendar" component={CalendarView} />
                   
@@ -72,7 +72,7 @@ class App extends Component {
                   <Route path="/managers" component={Managers} />
                   <Route path="/payments" component={PaymentView} />
                   <Route path="/not-found" component={NotFound} />
-                  <Route path="/" exact component={Dashboard} />
+                  <Route path="/" exact render={()=><Dashboard/>}/>
                   <Redirect to="/not-found" />
                 </Switch>
             </div>

@@ -16,14 +16,14 @@ const CreateProject = (props) => {
 
   
   return (
-    <React.Fragment>
+    <div className="content panel-right shadow p-3 mb-5 bg-white rounded create-project">
       <h4 className="page-title">Create Project</h4> 
       <Stepper key="1" totalSteps={stepperData.length} 
         stepperData={stepperData} 
         createProjectFormData={createProjectFormData}
         fieldsDefaultData={fieldsDefaultData}
         initialFormData={initialFormData}/>
-    </React.Fragment>
+    </div>
   );
 };
 

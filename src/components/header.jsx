@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../logo.gif' // relative path to image 
+import logo from '../logo.jpeg' // relative path to image 
 import '../assets/css/header.css';
 
 class Header extends Component {
